@@ -1,0 +1,34 @@
+@keyframes red-block {
+    0% {
+        transform: scale(10, 10)
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.4);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fold {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(-100%, 0);
+    }
+}
+
+@keyframes unfold {
+    0% {
+        transform: translate(-100%, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
