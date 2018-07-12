@@ -1,27 +1,30 @@
 <template>
     <div class="detail-wrap">
-        <div class="detail-tag" :class="{'fold':fold}">
+
+        <div class="detail-con">
+            <div class="con-wrap">
+                <router-link to="/case/number/detail/dc"><img alt="" :src="require('@/assets/images/case1.png')"></router-link>
+                <router-link to="/case/number/detail/px"><img alt="" :src="require('@/assets/images/case2.png')"></router-link>
+                <router-link to="/case/number/detail/ds"><img alt="" :src="require('@/assets/images/case3.png')"></router-link>
+                <router-link to="/case/number/detail/cy"><img alt="" :src="require('@/assets/images/case4.png')"></router-link>
+                <router-link to="/case/number/detail/jy"><img alt="" :src="require('@/assets/images/case5.png')"></router-link>
+                <router-link to="/case/number/detail/px2"><img alt="" :src="require('@/assets/images/case6.png')"></router-link>
+                <router-link to="/case/number/detail/qc"><img alt="" :src="require('@/assets/images/case7.png')"></router-link>
+                <router-link to="/case/number/detail/ppxc"><img alt="" :src="require('@/assets/images/case8.png')"></router-link>
+                <router-link to="/case/number/detail/zf"><img alt="" :src="require('@/assets/images/case9.png')"></router-link>
+                <router-link to="/case/number/detail/jr2"><img alt="" :src="require('@/assets/images/case10.png')"></router-link>
+            </div>
+        </div>
+
+        <div class="slider-menu" :class="{'fold':fold}">
             <div class="tag-type tags">
-                <span v-for="type in tagTypes" :key="type.value" :class="{active:type.active}" @click="selectType(type.value)">{{type.name}}</span>
+                <span v-for="type in tagTypes" :key="type.value" :class="{active:type.active}" @click.self.stop="selectType(type.value)">{{type.name}}</span>
             </div>
             <div class="line"></div>
             <div class="tag-con tags">
-                <span v-for="tag in tags" :key="tag.id" @click="selectTag(tag.id)">{{tag.name}}</span>
+                <span v-for="tag in tags" :key="tag.id" @click.self.stop="selectTag(tag.id)">{{tag.name}}</span>
             </div>
-            <div class="menu-button" @click="toggleMenu"></div>
-        </div>
-
-        <div class="detail-con">
-            <router-link to="/case/number/detail/dc"><img alt="" :src="require('@/assets/images/case1.png')"></router-link>
-            <router-link to="/case/number/detail/px"><img alt="" :src="require('@/assets/images/case2.png')"></router-link>
-            <router-link to="/case/number/detail/ds"><img alt="" :src="require('@/assets/images/case3.png')"></router-link>
-            <router-link to="/case/number/detail/cy"><img alt="" :src="require('@/assets/images/case4.png')"></router-link>
-            <router-link to="/case/number/detail/jy"><img alt="" :src="require('@/assets/images/case5.png')"></router-link>
-            <router-link to="/case/number/detail/px2"><img alt="" :src="require('@/assets/images/case6.png')"></router-link>
-            <router-link to="/case/number/detail/qc"><img alt="" :src="require('@/assets/images/case7.png')"></router-link>
-            <router-link to="/case/number/detail/ppxc"><img alt="" :src="require('@/assets/images/case8.png')"></router-link>
-            <router-link to="/case/number/detail/zf"><img alt="" :src="require('@/assets/images/case9.png')"></router-link>
-            <router-link to="/case/number/detail/jr2"><img alt="" :src="require('@/assets/images/case10.png')"></router-link>
+            <div class="menu-button" @click.self.stop="toggleMenu"></div>
         </div>
     </div>
 </template>
@@ -200,6 +203,15 @@ export default {
             fold: true,
         }
     },
+    watch: {
+        fold(val) {
+            if (val) {
+                document.body.removeEventListener('click', this.toggleMenu)
+                return
+            }
+            document.body.addEventListener('click', this.toggleMenu)
+        }
+    },
     computed: {
         tags() {
             if (this.curType === 'all') {
@@ -210,7 +222,6 @@ export default {
     },
     methods: {
         selectType(type) {
-            return
             this.tagTypes.forEach(item => {
                 item.active = false
                 if (item.value === type) {
@@ -221,6 +232,7 @@ export default {
             this.curType = type
         },
         selectTag(tag) {
+            return
             this.$router.push(`/case/number/detail/${tag}`)
         },
         toggleMenu() {
@@ -234,24 +246,19 @@ export default {
 .detail-wrap {
   width: 100%;
   position: relative;
-  box-sizing: border-box;
-  height: calc(100vh - 460px);
-  padding: 20px 0;
-  overflow-y: auto;
   .fold {
     transform: translateX(100%);
   }
-  .detail-tag {
+  .slider-menu {
     position: fixed;
     transition: transform 0.4s ease;
-    right: 0;
+    right: -4px;
     width: 80%;
-    top: 22%;
+    top: 16%;
     background: white;
-    // border: solid 1px #eeeeef;
+    z-index: 999;
+    border: solid 4px #b01109;
     padding: 26px;
-    // box-shadow: -5px 0px 16px #eaeaea;
-    border-left: solid 4px #b01109;
     .menu-button {
       position: absolute;
       height: 36px;
@@ -259,6 +266,7 @@ export default {
       top: 50%;
       margin-top: -18px;
       left: -36px;
+      z-index: 9999;
       cursor: pointer;
       &:before {
         content: "";
@@ -305,18 +313,24 @@ export default {
     }
   }
   .detail-con {
-    // min-height: 600px;
-    // background: #eeeeef;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    a {
-      width: 46%;
-      margin-bottom: 30px;
-      display: block;
-    }
-    img {
-      width: 100%;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    height: calc(100vh - 440px);
+    box-sizing: border-box;
+    padding: 20px 0;
+    .con-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      a {
+        width: 45%;
+        margin-bottom: 40px;
+        display: block;
+      }
+      img {
+        width: 100%;
+      }
     }
   }
   .detail-foot {

@@ -24,16 +24,16 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 20px 0 20px 30px;
-  height: 190px;
+  height: 170px;
   justify-content: space-between;
-  border: solid 1px #231815;
+  border: solid 0.5px #231815;
   cursor: pointer;
   .block-title {
-    font-size: 26px;
+    font-size: 22px;
     line-height: 1.4;
   }
   .block-foot {
-    font-size: 12px;
+    font-size: 18px;
     white-space: nowrap;
   }
 }

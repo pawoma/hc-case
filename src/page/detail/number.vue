@@ -13,7 +13,6 @@
             <router-link to="/case/1">HC数字营销资讯</router-link>
         </div>
         <div class="line"></div>
-
         <div class="detail-con">
             <img class="con-img" :src="src" alt="">
         </div>
@@ -78,30 +77,32 @@ export default {
     align-items: center;
     margin-top: 26px;
     a {
-      padding: 12px 31px;
+      padding: 10px 25px;
       border: solid 1px #e04c4e;
-      font-size: 28px;
+      font-size: 22px;
       color: #000;
     }
   }
   .detail-con {
-    height: 600px;
-    overflow-y: auto;
-    .con-img{
-        width:100%;
+    height: calc(100vh - 480px);
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    .con-img {
+      width: 100%;
     }
   }
   .detail-foot {
     position: absolute;
-    bottom: 3%;
-    left: 0;
+    bottom: 1%;
+    left: 5%;
+    width:90%;
     img {
       width: 100%;
     }
   }
   .line {
     height: 1px;
-    background: #000;
+    background: #cacaca;
     margin: 26px 0;
   }
 }

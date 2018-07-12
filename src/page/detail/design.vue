@@ -72,27 +72,33 @@ export default {
     align-items: center;
     margin-top: 26px;
     a {
-      padding: 12px 31px;
+      padding: 10px 25px;
       border: solid 1px #e04c4e;
-      font-size: 28px;
+      font-size: 22px;
       color: #000;
     }
   }
   .detail-con {
-    min-height: 600px;
-    background: #eeeeef;
+    height: calc(100vh - 480px);
+    overflow-y: scroll;
+    background: #cacaca;
+    -webkit-overflow-scrolling: touch;
+    .con-img {
+      width: 100%;
+    }
   }
   .detail-foot {
     position: absolute;
-    bottom: 3%;
-    left: 0;
+    bottom: 1%;
+    left: 5%;
+    width:90%;
     img {
       width: 100%;
     }
   }
   .line {
     height: 1px;
-    background: #000;
+    background: #cacaca;
     margin: 26px 0;
   }
 }

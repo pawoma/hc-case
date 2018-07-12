@@ -104,12 +104,14 @@ export default {
     }
   }
   .case-list {
-    margin-top: 60px;
+    margin-top: 50px;
   }
   .case-foot {
     position: absolute;
-    bottom: 3%;
-    left: 0;
+    bottom: 1%;
+    left: 5%;
+    width:90%;
+
     img {
       width: 100%;
     }

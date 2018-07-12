@@ -1,12 +1,12 @@
 <template>
     <div class="loader-wrap">
         <transition name="fade">
-            <img v-if="visible" src="../assets/images/cen-logo.png" class="cen-logo" alt="">
+            <img v-if="visible" :src="require('@/assets/images/cen-logo.png')" class="cen-logo" alt="">
         </transition>
         <transition name="fade">
             <div v-if="!visible" class="red-mask"></div>
         </transition>
-        <img src="../assets/images/foot-logo.png" class="foot-logo" alt="">
+        <img :src="require('@/assets/images/foot-logo.png')" class="foot-logo" alt="">
     </div>
 </template>
 
@@ -50,10 +50,10 @@ export default {
     z-index: 999;
   }
   .foot-logo {
-    width: 171px;
+    width: 20%;
     position: absolute;
     left: 50%;
-    margin-left: -85px;
+    transform: translateX(-50%);
     bottom: 4%;
   }
 }
